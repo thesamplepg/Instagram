@@ -1,0 +1,96 @@
+.Header {
+    width: 100vw;
+    background-color: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+}
+
+.Container {
+    width: 1024px;
+    margin: 0 auto;
+    padding: 26px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Logo {
+    flex-basis: calc((1024px - 215px - 2rem) / 2);
+}
+
+.Logo svg {
+    font-size: 2rem;
+}
+
+.Search .InputWrapper {
+    width: 215px;
+    position: relative;
+}
+
+.InputWrapper .SearchInput {
+    padding: 0.3rem 0.3rem 0.3rem 1.35rem;
+    background-color: #fafafa;
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+    outline: none;
+    color: rgba(0, 0, 0, 0.603);
+    font-family: var(--font-main);
+    width: 100%;
+}
+
+.InputWrapper .SearchInput::-webkit-input-placeholder {
+    transform: translateX(calc(50% - 30px));
+}
+
+.InputWrapper svg {
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.288);
+    position: absolute;
+    top: calc(50% - 0.7rem / 2.4);
+    font-size: 0.7rem;
+}
+
+svg:nth-child(2) {
+    left: 8px;
+}
+
+svg:nth-child(3) {
+    right: 8px;
+    animation: spin 1s linear infinite;
+}
+
+.Navbar {
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: calc((1024px - 215px - 2rem) / 2);
+}
+
+.Navbar div {
+    margin: 0 1rem;
+}
+
+.Navbar svg {
+    font-size: 1.4rem;
+    color: #000;
+    cursor: pointer;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 1024px) {
+    .Container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .Search {
+        display: none;
+    }
+}

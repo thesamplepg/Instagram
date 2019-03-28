@@ -1,0 +1,25 @@
+.Loader {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 10000;
+    background-color: #fff;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Loader svg {
+    color: var(--color-blue);
+    font-size: 3rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}

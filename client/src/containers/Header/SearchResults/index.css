@@ -1,0 +1,70 @@
+.SearchResults {
+    max-height: 362px;
+    overflow-y: auto;
+    width: 225px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15vh;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 0 2px 1px #e6e6e6;
+    z-index: 200;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+}
+
+.Account {
+    border-bottom: 1px solid #e6e6e6;
+    text-decoration: none;
+    color: #000;
+    font-family: var(--font-main);
+    background-color: #fff;
+}
+
+.Account:last-child {
+    border: none;
+}
+
+.Account:hover {
+    background-color: #e6e6e644;
+}
+
+.Account .Wrapper {
+    display: flex;
+    width: 100%;
+    padding: 0.7rem;
+    align-items: center;
+}
+
+.Account .Wrapper img {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
+
+.Account .Wrapper .Name {
+    padding-left: 0.5rem;
+    font-size: 15px;
+}
+
+.Account .Wrapper .Name div:first-child {
+    font-weight: 600;
+    color: #262626;
+}
+
+.Account .Wrapper .Name div:last-child {
+    color: #26262683;
+    font-size: 0.8rem;
+}
+
+.NotFound {
+    padding: 0.7rem;
+    color: #26262683;
+    font-weight: 600;
+    text-align: center;
+}

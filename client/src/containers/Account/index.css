@@ -1,0 +1,136 @@
+.Account {
+    width: 100%;
+    background-color: #fafafa;
+}
+
+.Container {
+    width: 1024px;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+.AccountInformation {
+    display: flex;
+    width: 100%;
+}
+
+.Information {
+    width: 100%;
+}
+
+.Top {
+    display: flex;
+    align-items: center;
+}
+
+.Top div {
+    margin: 0 0.7rem;
+}
+
+.Top .userName {
+    font-size: 2rem;
+    font-weight: 100;
+    color: rgba(0, 0, 0, 0.692);
+    max-width: 220px;
+    overflow: hidden;
+    max-width: 215px;
+    min-width: 80px;
+}
+
+.Top .EditButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0 0.8rem;
+    color: rgba(0, 0, 0, 0.856);
+    text-decoration: none;
+}
+
+.Top .EditButton:active  {
+    opacity: 0.5;
+}
+
+.Top .Logout {
+    cursor: pointer;
+    margin-left: 0px;
+    padding: 0.5rem 0.7rem;
+    border-radius: 5px;
+    border: 1px solid #e6e6e6;
+}
+
+.Top .Logout:active {
+    opacity: 0.5;
+}
+
+.Button {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    padding: 0.5rem 0;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-blue);
+}
+
+.Button:active {
+    opacity: 0.5;
+}
+
+.Unfollow {
+    background-color: #fff;
+    color: var(--color-blue);
+    border: 1px solid #e6e6e6;
+}
+
+.ButtonsContainer {
+    width: 100%;
+    display: flex;
+}
+
+
+@media (max-width: 1024px) {
+    .Container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 750px) {
+    .Container {
+        padding: 0;
+    }
+
+    .AccountInformation {
+        padding: 1rem;
+        align-items: center;
+    }
+
+    .Top {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .Top div {
+        padding: 0.5rem 0;
+    }
+
+    .EditButton {
+        margin: 0 1rem 0 0 !important;
+    }
+
+    .Button {
+        width: 100%;
+        margin: 0 !important;
+    }
+}
