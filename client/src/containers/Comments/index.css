@@ -1,0 +1,9 @@
+.Comments {
+    flex-grow: 1;
+    flex-basis: 1px;
+    overflow-y: scroll;
+}
+
+.Comments::-webkit-scrollbar {
+    display: none;
+}

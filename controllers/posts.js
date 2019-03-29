@@ -113,8 +113,17 @@ module.exports.addComment = async(req, res) => {
     if(req.session.token) {
         
         const data = await decodeJwt(req.session.token);
+
+        const creater = await Account.findOne({userName: data.userName});
+
+        const comment = {
+            creater: data.userName,
+            post: req.body.postId,
+            text: req.body.comment,
+            avatar: creater.avatar
+        }
         
-        const newComment = await Post.addComment(req.body);
+        const newComment = await Post.addComment(comment);
 
         res.json(newComment);
         

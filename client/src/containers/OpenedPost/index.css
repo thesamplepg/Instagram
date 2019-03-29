@@ -23,16 +23,31 @@
     min-width: 400px;
     min-height: 400px;
     margin-bottom: -0.5rem;
+    background-color: #000;;
 }
 
 .ImageContainer img {
+    max-width: calc(1024px - 334px);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     max-height: 100vh;
-    max-width: 700px;
 }
 
 .RightSection {
+    position: relative;
     width: 334px;
     border-left: 1px solid #e6e6e6;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.OptionsContainer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 @media (max-width: 1024px) {

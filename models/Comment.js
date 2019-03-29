@@ -19,6 +19,10 @@ class Comment {
             .catch(err => Promise.reject(err));
     }
 
+    static find (page) {
+        //getcomments skil and limit
+    }
+
     static delete (id) {
         const comments = getDatabase('instagram').collection('comments');
 

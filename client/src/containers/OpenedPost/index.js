@@ -6,6 +6,9 @@ import classes from './index.css';
 import Header from '../Header';
 import Loader from '../../components/Loader';
 import UserNameSection from '../../components/UserNameSection';
+import Options from '../Options';
+import CommentAddSection from '../CommentAddSection';
+import Comments from '../Comments';
 
 class OpenedPost extends Component {
 
@@ -13,12 +16,13 @@ class OpenedPost extends Component {
         const id = window.location.pathname.split('/')[2]
         this.props.GetOnePost(id);
     }
+    
 
     render() {
         let output = <Loader />
 
         if(!this.props.loading) {
-            const { image, creater, avatar } = this.props.post;
+            const { image, creater, avatar, likes, date } = this.props.post;
 
             output = (
                 <div className={classes.OpenedPost}>
@@ -32,6 +36,16 @@ class OpenedPost extends Component {
                                 <UserNameSection 
                                     userName={creater}
                                     avatar={avatar}
+                                />
+                                <Comments/>
+                                <Options
+                                    id="Comment"
+                                    likes={likes}
+                                    date={date}
+                                    postId={this.props.post._id}
+                                />
+                                <CommentAddSection 
+                                    id="Comment"
                                 />
                             </div>
                         </div>

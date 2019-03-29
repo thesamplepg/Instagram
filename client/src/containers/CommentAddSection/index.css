@@ -1,0 +1,22 @@
+.CommentAddSection {
+    width: 100%;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CommentAddSection input {
+    border: none;
+    padding: 1rem;
+    outline: none;
+    color: rgba(0, 0, 0, 0.671);
+    width: 100%;
+    font-family: var(--font-main);
+}
+
+.CommentAddSection input::-webkit-input-placeholder {
+    letter-spacing: 1px;
+}

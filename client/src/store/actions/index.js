@@ -20,3 +20,12 @@ export const GET_POSTS_FALSE = 'GET_POSTS_FALSE'
 export const GET_ONE_POST = 'GET_ONE_POST';
 export const GET_ONE_POST_TRUE = 'GET_ONE_POST_TRUE';
 export const GET_ONE_POST_FALSE = 'GET_ONE_POST_FALSE';
+
+export const LIKE = 'LIKE';
+export const UNLIKE = 'UNLIKE';
+
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const ADD_COMMENT_TRUE = 'ADD_COMMENT_TRUE';
+export const ADD_COMMENT_FALSE = 'ADD_COMMENT_FALSE';
+
+export const DELETE_COMMENT = 'DELETE_COMMENT';

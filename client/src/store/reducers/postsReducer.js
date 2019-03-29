@@ -4,7 +4,8 @@ const initialState = {
     getPostsLoading: true,
     posts: [],
     post: null,
-    getOnePostLoading: true
+    getOnePostLoading: true,
+    addCommentLoading: false
 }
 
 const posts = (state = initialState, action) => {
@@ -40,6 +41,47 @@ const posts = (state = initialState, action) => {
             return {
                 ...state,
                 getOnePostLoading: false
+            }
+        case actionTypes.LIKE:
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    likes: [
+                        ...state.post.likes, 
+                        action.payload.liker
+                    ]
+                }
+            }
+        case actionTypes.UNLIKE:
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    likes: state.post.likes.filter(user => user !== action.payload.unliker)
+                }
+            }
+        case actionTypes.ADD_COMMENT:
+            return {
+                ...state,
+                addCommentLoading: true
+            }
+        case actionTypes.ADD_COMMENT_TRUE:
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    comments: [
+                        ...state.post.comments,
+                        action.payload.comment
+                    ]
+                },
+                addCommentLoading: false
+            }
+        case actionTypes.ADD_COMMENT_FALSE:
+            return {
+                ...state,
+                addCommentLoading: false
             }
         default: return state;
     }

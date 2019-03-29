@@ -46,5 +46,42 @@ export const GetOnePost = (id) => dispatch => {
             dispatch({ type: actionType.GET_ACCOUNT_FALSE });
             console.log(err)
         });
-
 }
+
+export const Like = (liker) => ({ type: actionType.LIKE, payload: { liker } });
+export const Unlike = (unliker) => ({ type: actionType.UNLIKE, payload: { unliker } });
+
+export const AddComment = (comment, postId) => async dispatch => {
+    dispatch({ type: actionType.ADD_COMMENT });
+
+    try {
+        const res = await fetch('/api/posts/comment', {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                comment, postId
+            })
+        });
+
+        const data = await res.json();
+
+        if(data.success) {
+            dispatch({
+                type: actionType.ADD_COMMENT_TRUE,
+                payload: { comment: data.comment }
+            });
+        } else {
+            dispatch({
+                type: actionType.ADD_COMMENT_FALSE
+            });
+        }
+    
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type: actionType.ADD_COMMENT_FALSE
+        });
+    }
+};
