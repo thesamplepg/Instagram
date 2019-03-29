@@ -9,6 +9,8 @@ import Loader from './components/Loader';
 import Login from './containers/Authorization/Login';
 import Signup from './containers/Authorization/Signup';
 import Account from './containers/Account';
+import Publications from './containers/Publications';
+import CreatePost from './containers/CreatePost';
 import { isAuthorizied } from './components/Utilits/index';
 
 class App extends Component {
@@ -36,9 +38,11 @@ class App extends Component {
       <React.Fragment>
         {this.props.authorizationLoading ? <Loader /> : null}
         <div className={classes.App}>
+          <Route exact path="/" component={Publications}/>
           <Route exact path="/:userName" component={Account}/>
           <Route path="/accounts/login" component={Login}/>
           <Route path="/accounts/signup" component={Signup}/>
+          <Route path="/accounts/post" component={CreatePost}/>
         </div>
       </React.Fragment>
     );

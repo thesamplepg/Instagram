@@ -7,7 +7,6 @@ class Post {
     constructor (data) {
         this.image = data.image;
         this.creater = data.creater;
-        this.text = data.text ? data.text : '';
         this.comments = [];
         this.likes = [];
         this.date = Date.now();

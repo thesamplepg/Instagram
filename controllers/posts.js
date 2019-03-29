@@ -40,7 +40,6 @@ module.exports.createPost = async(req, res) => {
                 const postInfo = {
                     image: result.secure_url,
                     imageId: result.public_id,
-                    text: req.body.text ? req.body.text : null,
                     creater: data.userName
                 }
                 const newPost = new Post(postInfo);

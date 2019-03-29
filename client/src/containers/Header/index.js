@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faSpinner, faStar, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSpinner, faCamera, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -14,16 +14,35 @@ class Header extends Component {
         searchLoading: false,   
         accounts: null,
         isOpen: false,
-        userName: ''
+        userName: '',
+        scrolled: false
+    }
+
+    scrollHandler = () => {
+        if(window.scrollY > 20 && !this.state.scrolled) {
+            this.setState({ scrolled: true });
+        } else if(window.scrollY < 20 && this.state.scrolled) {
+            this.setState({ scrolled: false });
+        } else {
+            return;
+        }
+    }
+
+    hideSearchBlockHandler = (e) => {
+        if(this.state.isOpen && !e.target.classList.contains(classes.SearchInput))
+        {
+            this.setState({ isOpen: false });
+        }
     }
 
     componentDidMount() {
-        window.addEventListener('click', (e) => {
-            if(this.state.isOpen && !e.target.classList.contains(classes.SearchInput))
-            {
-                this.setState({ isOpen: false });
-            }
-        });
+        document.addEventListener('scroll', this.scrollHandler);
+        window.addEventListener('click', this.hideSearchBlockHandler);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.scrollHandler);
+        window.removeEventListener('click', this.hideSearchBlockHandler);
     }
 
     focusHandler = () => {
@@ -70,7 +89,12 @@ class Header extends Component {
         return (
             <div className={classes.Header}>
                 {searchResults}
-                <div className={classes.Container}>
+                <div 
+                    className={classes.Container}
+                    style={{
+                        padding: this.state.scrolled ? '7px 20px' : '26px 20px'
+                    }}
+                >
                     <div className={classes.Logo}>
                         <Icon icon={ faInstagram }/>
                     </div>
@@ -90,8 +114,8 @@ class Header extends Component {
                     </div>
                     <div className={classes.Navbar}>
                         <div>
-                            <NavLink to="/favorites">
-                                <Icon icon={faStar}/>
+                            <NavLink to="/accounts/post">
+                                <Icon icon={faCamera}/>
                             </NavLink>
                         </div>
                         <div>

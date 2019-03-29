@@ -1,0 +1,57 @@
+.ImageContainer {
+    margin: 1rem auto;
+    margin-top: 6rem;
+    max-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.ImageContainer img {
+    height: 100%;
+}
+
+.Buttons {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 0 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Button {
+    margin: 0.5rem 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.Repick {
+    background-color: tomato;
+}
+
+.Submit {
+    background-color: var(--color-blue);
+}
+
+.Submit:active {
+    opacity: 0.7;
+}

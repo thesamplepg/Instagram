@@ -2,7 +2,10 @@
     width: 100vw;
     background-color: #fff;
     border-bottom: 1px solid #e6e6e6;
-    position: relative;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 200;
 }
 
 .Container {
@@ -12,6 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s;
 }
 
 .Logo {

@@ -11,13 +11,31 @@ import NotFound from '../../components/NotFound';
 class Account extends Component {
 
     state = {
-        account: window.location.pathname.split('/')[1]
+        account: window.location.pathname.split('/')[1],
+        width: window.innerWidth
     }
+
+    resizeHandler = () => {
+        this.setState({width: window.innerWidth});
+    }
+
+    componentDidMount() {
+
+        window.addEventListener('resize', this.resizeHandler);
+
+        if(isAuthorizied(this.props)) {
+            this.props.GetAccount(this.props.userName);
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.resizeHandler);
+    }
+    
 
     componentDidUpdate(prevProps) {
         if(isAuthorizied(this.props)) {
             const newAccount = window.location.pathname.split('/')[1];
-
             if( this.props.loading && prevProps.account === null ) {
                 this.props.GetAccount(this.props.userName);
             }
@@ -43,6 +61,7 @@ class Account extends Component {
                 if(this.props.isOwner) {
                     output = <Authorizied 
                         account={account}
+                        width={this.state.width}
                     />
                 } else {
                     output = <AnotherAccount 
@@ -51,6 +70,7 @@ class Account extends Component {
                         Follow={this.props.Follow}
                         Unfollow={this.props.Unfollow}    
                         userName={this.props.userName}
+                        width={this.state.width}
                     />
                 }
             } else {

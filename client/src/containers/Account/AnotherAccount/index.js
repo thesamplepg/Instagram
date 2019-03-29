@@ -98,7 +98,7 @@ class AnotherAccount extends Component {
                                     }
                                 </div>
                                 {
-                                    window.innerWidth > 750 ?
+                                    this.props.width > 750 ?
                                     <React.Fragment>
                                         <DigitalPart account={ account } />
                                         <AdditionalInformation account={ account } />
@@ -108,7 +108,7 @@ class AnotherAccount extends Component {
                             </div> 
                         </div>
                         {
-                            window.innerWidth < 750 ?
+                            this.props.width < 750 ?
                             <React.Fragment>
                                 <AdditionalInformation account={ account } />
                                 <DigitalPart account={ account } />
