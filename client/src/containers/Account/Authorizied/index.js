@@ -8,6 +8,7 @@ import Avatar from '../Avatar';
 import Icon from '../../../components/Icon';
 import DigitalPart from '../DigitalPart';
 import AdditionalInformation from '../AdditionalInformation';
+import Posts from '../Posts';
 
 class Authorizied extends Component {
    
@@ -55,6 +56,7 @@ class Authorizied extends Component {
                             null 
                         }
                     </div>
+                    <Posts />
                 </div>  
             </React.Fragment>
         )

@@ -12,3 +12,7 @@ export const CHANGE_AVATAR_FALSE = 'CHANGE_AVATAR_FALSE';
 
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
+
+export const GET_POSTS = 'GET_POSTS';
+export const GET_POSTS_TRUE = 'GET_POSTS_TRUE'
+export const GET_POSTS_FALSE = 'GET_POSTS_FALSE'

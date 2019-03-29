@@ -1,12 +1,13 @@
 .DigitalPart {
     display: flex;
     align-items: center;
-    padding: 1rem 0;
-    justify-content: space-around;
+    padding: 1rem 0;;
     width: 300px;
+    padding-left: 0.8rem;
 }
 
 .DigitalPart div {
+    flex-basis: calc(100% / 3);
     color: rgba(0, 0, 0, 0.685);
     font-weight: 600;
 }
@@ -23,6 +24,7 @@
         border-top: 1px solid #e6e6e6;
         border-bottom: 1px solid #e6e6e6;
         margin-top: 1rem;
+        padding-left: 0;
     }
 
     .DigitalPart div {
