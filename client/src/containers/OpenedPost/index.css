@@ -1,0 +1,42 @@
+.OpenedPost {
+    position: relative;
+    width: 1024px;
+    margin: 1rem auto;
+    margin-bottom: 3rem;
+    top: 100px;
+}
+
+.Centered {
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.Container {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+}
+
+.ImageContainer {
+    min-width: 400px;
+    min-height: 400px;
+    margin-bottom: -0.5rem;
+}
+
+.ImageContainer img {
+    max-height: 100vh;
+    max-width: 700px;
+}
+
+.RightSection {
+    width: 334px;
+    border-left: 1px solid #e6e6e6;
+}
+
+@media (max-width: 1024px) {
+    .OpenedPost {
+        width: 1024px
+    }
+}

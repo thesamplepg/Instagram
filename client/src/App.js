@@ -11,6 +11,7 @@ import Signup from './containers/Authorization/Signup';
 import Account from './containers/Account';
 import Publications from './containers/Publications';
 import CreatePost from './containers/CreatePost';
+import OpenedPost from './containers/OpenedPost';
 import { isAuthorizied } from './components/Utilits/index';
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
           <Route path="/accounts/login" component={Login}/>
           <Route path="/accounts/signup" component={Signup}/>
           <Route path="/accounts/post" component={CreatePost}/>
+          <Route path="/post/:id" component={OpenedPost}/>
         </div>
       </React.Fragment>
     );

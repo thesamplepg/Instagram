@@ -20,9 +20,24 @@ module.exports.getPosts = (req, res) => {
 
 module.exports.getOnePost = (req, res) => {
 
-    Post.findOne({ _id: ObjectId(req.query.id) })
-        .then(post => res.json({ post }))
-        .catch(err => console.log(err));
+    if(ObjectId.isValid(req.query.id)) {
+        let post = {};
+
+        Post.findOne({ _id: ObjectId(req.query.id) })
+        .then(res => {
+            post = {...res};
+            
+            return Account.findOne({userName: res.creater});
+        })
+        .then(creater => {
+            post = {...post, avatar: creater.avatar};
+
+            res.json({ post });
+        })
+        .catch(err => res.json({ post: false }));
+    } else {
+        res.json({post: false});
+    }
 
 }
 

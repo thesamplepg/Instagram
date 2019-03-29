@@ -16,3 +16,7 @@ export const UNFOLLOW = 'UNFOLLOW';
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POSTS_TRUE = 'GET_POSTS_TRUE'
 export const GET_POSTS_FALSE = 'GET_POSTS_FALSE'
+
+export const GET_ONE_POST = 'GET_ONE_POST';
+export const GET_ONE_POST_TRUE = 'GET_ONE_POST_TRUE';
+export const GET_ONE_POST_FALSE = 'GET_ONE_POST_FALSE';

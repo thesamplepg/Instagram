@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GetPosts } from '../../../store/actions/posts';
+import { withRouter } from 'react-router-dom';
 
 import classes from './index.css';
 import BlockLoader from '../../../components/BlockLoader';
@@ -26,6 +27,10 @@ class Posts extends Component {
         this.setState({focus: null})   
     };
     
+    openPost = (id) => {
+        this.props.history.push(`/post/${id}`);
+    }
+
     render() {
         let output = <BlockLoader />
 
@@ -35,12 +40,13 @@ class Posts extends Component {
                     <div className={classes.PostsList}>
                         {
                             this.props.posts.map((post, index) => {
-                                return <Post 
+                                return <Post
+                                    hoverHandler={() => this.hoverHandler(index)}
+                                    openPost={() => this.openPost(post._id)} 
                                     key={index}
                                     isMouseOver={this.state.focus === index} 
                                     {...post}
-                                    unhoverHandler={this.unhoverHandler}
-                                    hoverHandler={() => this.hoverHandler(index)}    
+                                    unhoverHandler={this.unhoverHandler}  
                                 />
                             })
                         }
@@ -60,5 +66,6 @@ class Posts extends Component {
 export default connect( state => ({
     posts: state.posts.posts,
     loading: state.posts.getPostsLoading,
-    userName: state.accounts.account.userName
-}), { GetPosts } )(Posts);
+    userName: state.accounts.account.userName,
+    isOpen: state.posts.isOpen
+}), { GetPosts } )(withRouter(Posts));

@@ -38,6 +38,7 @@ class Post extends React.Component {
 
         return (
             <div 
+                onClick={this.props.openPost}
                 onMouseOver={this.props.hoverHandler}
                 onMouseOut={this.props.unhoverHandler}
                 ref={this.post}

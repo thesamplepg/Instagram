@@ -26,3 +26,25 @@ export const GetPosts = (userName, page) => dispatch => {
         });
 
 }
+
+export const GetOnePost = (id) => dispatch => {
+    dispatch({ type: actionType.GET_ONE_POST });
+
+    fetch(`/api/posts/post?id=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.post) {
+                dispatch({
+                    type: actionType.GET_ONE_POST_TRUE,
+                    payload: { post: data.post }
+                });
+            } else {
+                dispatch({ type: actionType.GET_ONE_POST_FALSE });
+            }
+        })
+        .catch(err => {
+            dispatch({ type: actionType.GET_ACCOUNT_FALSE });
+            console.log(err)
+        });
+
+}
