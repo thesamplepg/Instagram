@@ -6,8 +6,10 @@ const keys = require('./keys');
 const { connectDB } = require('./utils/database');
 const accountsApi = require('./api/accountsApi');
 const postsApi = require('./api/postsApi');
+const fs = require('fs');
 
 const app = express();
+
 
 app.use(helmet());
 app.use(express.json());
@@ -20,6 +22,7 @@ app.use(session({
         checkPeriod: 86400000
     })
 }));
+app.use('/static/', express.static(__dirname, '/client/static'))
 
 connectDB(() => {
 
@@ -29,6 +32,10 @@ connectDB(() => {
 
     app.use('/api/accounts', accountsApi);
     app.use('/api/posts', postsApi);
+
+    app.get('*', (req, res) => {
+        res.sendFile(fs.readFileSync(__dirname = '/client/build/index.html'))
+    });
 
     const port = process.env.PORT || 5000;
 
