@@ -17,6 +17,8 @@ router.delete('/delete', postsControllers.deletePost);
 router.put('/like', postsControllers.like);
 // /api/posts/unlike => Put
 router.put('/unlike', postsControllers.unlike);
+// /api/posts/comments => GET
+router.get('/comments', postsControllers.getComments);
 // /api/posts/comment => POST
 router.post('/comment', postsControllers.addComment);
 // /api/posts/comment/delete => DELETE

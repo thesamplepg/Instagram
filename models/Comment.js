@@ -19,8 +19,19 @@ class Comment {
             .catch(err => Promise.reject(err));
     }
 
-    static find (page) {
-        //getcomments skil and limit
+    static find (query, page) {
+        const comments = getDatabase('instagram').collection('comments');
+
+
+        return comments.find(query)
+            .skip(page * 12).limit(12).toArray()
+            .then(comments => {
+                return Promise.resolve(comments);
+            })
+            .catch(err => {
+                console.log(err);
+                return Promise.reject({success: false});
+            });
     }
 
     static delete (id) {

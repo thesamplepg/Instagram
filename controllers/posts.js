@@ -8,9 +8,9 @@ const { ObjectId } = require('mongodb');
 
 module.exports.getPosts = (req, res) => {
     
-    const { userName, s, l } = req.query;
+    const { userName, page} = req.query;
 
-    Post.find({ filter: { creater: userName }, skip: Number(s), limit: Number(l) })
+    Post.find({ filter: { creater: userName }, skip: Number(page) * 21, limit: 21 })
         .then( posts => {
             res.json({ posts });
         })
@@ -32,9 +32,17 @@ module.exports.getOnePost = (req, res) => {
         .then(creater => {
             post = {...post, avatar: creater.avatar};
 
-            res.json({ post });
+            return Comment.find({ post: ObjectId(req.query.id) }, Number(req.query.page));
         })
-        .catch(err => res.json({ post: false }));
+        .then(comments => {
+            post = {...post, comments};
+
+            res.json({post});
+        })
+        .catch(err => {
+            console.log(err);
+            res.json({ post: false })
+        });
     } else {
         res.json({post: false});
     }
@@ -109,6 +117,26 @@ module.exports.unlike = async(req, res) => {
     } else res.json({ authorization: false });
 }
 
+module.exports.getComments = async(req, res) => {
+    
+    const data = await decodeJwt(req.session.token);
+
+    const { postId, page } = req.query;
+
+    if(ObjectId.isValid(postId)) {
+        const comments = await Comment.find({post: ObjectId(postId)}, Number(page))
+            .then(comments => {
+                res.json({success: true, comments});
+            })
+            .catch(err => {
+                res.json({success: false});
+            });
+    } else {
+        res.json({success: false});
+    }
+
+}
+
 module.exports.addComment = async(req, res) => {
     if(req.session.token) {
         
@@ -118,7 +146,7 @@ module.exports.addComment = async(req, res) => {
 
         const comment = {
             creater: data.userName,
-            post: req.body.postId,
+            post: ObjectId(req.body.postId),
             text: req.body.comment,
             avatar: creater.avatar
         }
