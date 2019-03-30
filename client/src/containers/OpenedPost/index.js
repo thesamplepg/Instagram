@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GetOnePost, GetNewComments } from '../../store/actions/posts';
+import { GetOnePost, GetNewComments, LikeComment, UnlikeComment } from '../../store/actions/posts';
 
 import classes from './index.css';
 import Header from '../Header';
@@ -21,18 +21,34 @@ class OpenedPost extends Component {
         this.props.GetOnePost(id);
     }
 
+    toggleLikeComment = async (id, type, index) => {
+        
+        if(type === 'like') this.props.LikeComment(this.props.userName, index);
+        else this.props.UnlikeComment(this.props.userName, index);
+
+        await fetch(`/api/posts/comment/${type}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            body: JSON.stringify({ id })
+        });
+    }
+
     getNewComments = () => {
-        if(this.props.post.comments.length > this.props.post.commentsList.length) {
-            this.setState({
-                commentsPage: this.state.commentsPage + 1
-            });
-    
-            this.props.GetNewComments(
-                {
-                    postId: this.props.post._id, 
-                    page: this.state.commentsPage
-                }
-            );
+        if(!this.props.commentsLoading) {
+            if(this.props.post.comments.length > this.props.post.commentsList.length) {
+                this.setState({
+                    commentsPage: this.state.commentsPage + 1
+                });
+        
+                this.props.GetNewComments(
+                    {
+                        postId: this.props.post._id, 
+                        page: this.state.commentsPage
+                    }
+                );
+            }
         }
     }
     
@@ -60,6 +76,9 @@ class OpenedPost extends Component {
                                     newComments={comments.length > commentsList.length}
                                     comments={commentsList}
                                     getNewComments={this.getNewComments}
+                                    userName={this.props.userName}
+                                    toggleLike={this.toggleLikeComment}
+                                    loading={this.props.commentsLoading}
                                 />
                                 <Options
                                     id="Comment"
@@ -82,6 +101,8 @@ class OpenedPost extends Component {
 }
 
 export default connect( state => ({
+    userName: state.authoriziedAccount.userName,
     post: state.posts.post,
-    loading: state.posts.getOnePostLoading
-}), { GetOnePost, GetNewComments } )(OpenedPost);
+    loading: state.posts.getOnePostLoading,
+    commentsLoading: state.posts.getNewCommentsLoading
+}), { GetOnePost, GetNewComments, LikeComment, UnlikeComment } )(OpenedPost);

@@ -160,16 +160,20 @@ module.exports.addComment = async(req, res) => {
     }
 }
 
-module.exports.deleteComment = async(req, res) => {
-    if(req.session.token) {
+module.exports.likeComment = async(req, res) => {
+    
+    const data = await decodeJwt(req.session.token);
 
-        const data = await decodeJwt(req.session.token);
+    const response = await Comment.like(req.body.id, data.userName);
 
-        const deletedComment = await Post.deleteComment(req.body.commentId);
+    res.json(response);
+}
 
-        res.json(deletedComment);
+module.exports.unlikeComment = async(req, res) => {
+    
+    const data = await decodeJwt(req.session.token);
 
-    } else {
-        res.json({ authorization: false });
-    }
+    const response = await Comment.unlike(req.body.id, data.userName);
+
+    res.json(response);
 }

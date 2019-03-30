@@ -21,7 +21,10 @@ router.put('/unlike', postsControllers.unlike);
 router.get('/comments', postsControllers.getComments);
 // /api/posts/comment => POST
 router.post('/comment', postsControllers.addComment);
-// /api/posts/comment/delete => DELETE
-router.delete('/comment/delete', postsControllers.deleteComment);
+// /api/posts/comment/like => PUT
+router.put('/comment/like', postsControllers.likeComment);
+// /api/posts/comment/unlike => PUT
+router.put('/comment/unlike', postsControllers.unlikeComment);
+
 
 module.exports = router;

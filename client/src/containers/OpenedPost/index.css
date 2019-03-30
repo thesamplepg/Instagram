@@ -38,7 +38,6 @@
 .RightSection {
     position: relative;
     width: 334px;
-    border-left: 1px solid #e6e6e6;
     background-color: #fff;
     display: flex;
     flex-direction: column;

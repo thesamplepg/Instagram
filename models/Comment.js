@@ -48,6 +48,38 @@ class Comment {
 
     }
 
+    static like(commentId, liker) {
+        const comments = getCollection('comments');
+
+        comments.updateOne(
+            { _id: ObjectId(commentId) },
+            { $push: { likes: liker } }
+        )
+        .then(res => {
+            Promise.resolve({success: true});
+        })
+        .catch(err => {
+            console.log(err);
+            Promise.reject({success: false});
+        });
+    }
+
+    static unlike(commentId, unliker) {
+        const comments = getCollection('comments');
+
+        comments.updateOne(
+            { _id: ObjectId(commentId) },
+            { $pull: { likes: unliker } }
+        )
+        .then(res => {
+            Promise.resolve({success: true});
+        })
+        .catch(err => {
+            console.log(err);
+            Promise.reject({success: false});
+        });
+    }
+
     static delete (id) {
         const comments = getCollection('comments');
 

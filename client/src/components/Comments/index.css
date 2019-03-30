@@ -16,6 +16,11 @@
 }
 
 .PlusButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     font-size: 2rem;
     cursor: pointer;
     border-radius: 50%; 

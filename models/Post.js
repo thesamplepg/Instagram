@@ -56,7 +56,7 @@ class Post {
             .catch(err => {
                 console.log(err);
                 Promise.resolve({success: false});
-            })
+            });
     }
 
     static unlike (id, unliker) {

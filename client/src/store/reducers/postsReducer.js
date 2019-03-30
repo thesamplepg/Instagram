@@ -6,8 +6,7 @@ const initialState = {
     post: null,
     getOnePostLoading: true,
     addCommentLoading: false,
-    getNewCommentsLoading: false,
-    commentsList: []
+    getNewCommentsLoading: false
 }
 
 const posts = (state = initialState, action) => {
@@ -73,7 +72,10 @@ const posts = (state = initialState, action) => {
                 ...state,
                 post: {
                     ...state.post,
-                    commentsList: action.payload.comment
+                    commentsList: [
+                        ...state.post.commentsList,
+                        action.payload.comment
+                    ]
                 },
                 addCommentLoading: false
             }
@@ -103,6 +105,35 @@ const posts = (state = initialState, action) => {
             return {
                 ...state,
                 getNewCommentsLoading: false
+            }
+        case actionTypes.LIKE_COMMENT:
+
+            const newCommentsList = [...state.post.commentsList];
+            const likedComment = newCommentsList[action.payload.index]
+            
+            likedComment.likes.push(action.payload.liker);
+
+            newCommentsList.splice(action.payload.index, 1, likedComment);
+
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    commentsList: newCommentsList
+                }
+            }
+        case actionTypes.UNLIKE_COMMENT:
+            const {unliker, index} = action.payload;
+
+            const commentsList = [...state.post.commentsList];
+            commentsList[index].likes = commentsList[index].likes.filter(liker => liker !== unliker);
+
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    commentsList: commentsList
+                }
             }
         default: return state;
     }

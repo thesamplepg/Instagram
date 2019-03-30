@@ -98,3 +98,6 @@ export const AddComment = (comment, postId) => async dispatch => {
         });
     }
 };
+
+export const LikeComment = (liker, index) => ({ type: actionType.LIKE_COMMENT, payload: { liker, index } });
+export const UnlikeComment = (unliker, index) => ({ type: actionType.UNLIKE_COMMENT, payload: { unliker, index } });

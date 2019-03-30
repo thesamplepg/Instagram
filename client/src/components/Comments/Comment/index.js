@@ -1,5 +1,6 @@
 import React from 'react';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 import classes from './index.css';
 import Icon from '../../Icon';
@@ -21,19 +22,28 @@ const getDateDifference = (date) => {
     return result;
 }
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, toggleLike, liked, index }) => {
+    const type = liked ? 'unlike' : 'like';
+    const path = `/${comment.creater}`
+
     return (
         <li className={classes.Comment}>
-            <img src={comment.avatar} alt="avatar" />
+            <NavLink to={path} className={classes.ImageLink}>
+                <img src={comment.avatar} alt="avatar" />
+            </NavLink>
             <div className={classes.Information}>
-                <span className={classes.UserName}>
+                <NavLink to={path} className={classes.UserName}>
                     {comment.creater}
-                </span>
+                </NavLink>
                 {comment.text}
-                <div className={classes.Date}>
-                    {getDateDifference(comment.date)}
+                <div className={classes.DateAndLikes}>
+                    {getDateDifference(comment.date)} 
+                    <span>{comment.likes.length} likes</span>
                 </div>
-                <div className={classes.Like}>
+                <div 
+                    onClick={() => toggleLike(comment._id, type, index)} 
+                    className={[classes.Like, liked ? classes.Liked : ''].join(' ')}
+                >
                     <Icon icon={faHeart}/>
                 </div>
             </div>
