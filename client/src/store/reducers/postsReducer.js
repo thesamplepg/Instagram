@@ -6,7 +6,9 @@ const initialState = {
     post: null,
     getOnePostLoading: true,
     addCommentLoading: false,
-    getNewCommentsLoading: false
+    getNewCommentsLoading: false,
+    publications: null,
+    getPublicationsLoading: true
 }
 
 const posts = (state = initialState, action) => {
@@ -134,6 +136,22 @@ const posts = (state = initialState, action) => {
                     ...state.post,
                     commentsList: commentsList
                 }
+            }
+        case actionTypes.GET_PUBLICATIONS:
+            return {
+                ...state,
+                getPublicationsLoading: true
+            }
+        case actionTypes.GET_PUBLICATIONS_TRUE:
+            return {
+                ...state,
+                getPublicationsLoading: false,
+                publications: action.payload.publications
+            }
+        case actionTypes.GET_PUBLICATIONS_FALSE:
+            return {
+                ...state,
+                getPublicationsLoading: false
             }
         default: return state;
     }
