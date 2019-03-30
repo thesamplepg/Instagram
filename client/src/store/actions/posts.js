@@ -51,6 +51,19 @@ export const GetOnePost = (id) => dispatch => {
 export const Like = (liker) => ({ type: actionType.LIKE, payload: { liker } });
 export const Unlike = (unliker) => ({ type: actionType.UNLIKE, payload: { unliker } });
 
+export const GetNewComments = ({postId, page}) => async dispatch => {
+    dispatch({ type: actionType.GET_NEW_COMMENTS });
+
+    const res = await fetch(`/api/posts/comments?postId=${postId}&page=${page}`);
+    const data = await res.json();
+
+    if(data.success) {
+        dispatch({ type: actionType.GET_NEW_COMMENTS_TRUE, payload: {comments: data.comments}});
+    } else {
+        dispatch({ type: actionType.GET_NEW_COMMENTS_FALSE });
+    }
+}
+
 export const AddComment = (comment, postId) => async dispatch => {
     dispatch({ type: actionType.ADD_COMMENT });
 

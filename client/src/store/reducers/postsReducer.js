@@ -5,7 +5,9 @@ const initialState = {
     posts: [],
     post: null,
     getOnePostLoading: true,
-    addCommentLoading: false
+    addCommentLoading: false,
+    getNewCommentsLoading: false,
+    commentsList: []
 }
 
 const posts = (state = initialState, action) => {
@@ -71,10 +73,7 @@ const posts = (state = initialState, action) => {
                 ...state,
                 post: {
                     ...state.post,
-                    comments: [
-                        ...state.post.comments,
-                        action.payload.comment
-                    ]
+                    commentsList: action.payload.comment
                 },
                 addCommentLoading: false
             }
@@ -82,6 +81,28 @@ const posts = (state = initialState, action) => {
             return {
                 ...state,
                 addCommentLoading: false
+            }
+        case actionTypes.GET_NEW_COMMENTS:
+            return {
+                ...state,
+                getNewCommentsLoading: true
+            }
+        case actionTypes.GET_NEW_COMMENTS_TRUE:
+            return {
+                ...state,
+                getNewCommentsLoading: false,
+                post: {
+                    ...state.post,
+                    commentsList: [
+                        ...state.post.commentsList,
+                        ...action.payload.comments
+                    ]
+                }
+            }
+        case actionTypes.GET_NEW_COMMENTS_FALSE:
+            return {
+                ...state,
+                getNewCommentsLoading: false
             }
         default: return state;
     }

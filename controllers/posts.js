@@ -35,7 +35,7 @@ module.exports.getOnePost = (req, res) => {
             return Comment.find({ post: ObjectId(req.query.id) }, Number(req.query.page));
         })
         .then(comments => {
-            post = {...post, comments};
+            post = {...post, commentsList: comments};
 
             res.json({post});
         })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GetOnePost } from '../../store/actions/posts';
+import { GetOnePost, GetNewComments } from '../../store/actions/posts';
 
 import classes from './index.css';
 import Header from '../Header';
@@ -12,9 +12,28 @@ import Comments from '../../components/Comments';
 
 class OpenedPost extends Component {
 
+    state = {
+        commentsPage: 1
+    }
+
     componentDidMount() {
         const id = window.location.pathname.split('/')[2]
         this.props.GetOnePost(id);
+    }
+
+    getNewComments = () => {
+        if(this.props.post.comments.length > this.props.post.commentsList.length) {
+            this.setState({
+                commentsPage: this.state.commentsPage + 1
+            });
+    
+            this.props.GetNewComments(
+                {
+                    postId: this.props.post._id, 
+                    page: this.state.commentsPage
+                }
+            );
+        }
     }
     
 
@@ -22,7 +41,7 @@ class OpenedPost extends Component {
         let output = <Loader />
 
         if(!this.props.loading) {
-            const { image, creater, avatar, likes, date, comments } = this.props.post;
+            const { image, creater, avatar, likes, date, comments, commentsList } = this.props.post;
 
             output = (
                 <div className={classes.OpenedPost}>
@@ -38,7 +57,9 @@ class OpenedPost extends Component {
                                     avatar={avatar}
                                 />
                                 <Comments
-                                    comments={comments}
+                                    newComments={comments.length > commentsList.length}
+                                    comments={commentsList}
+                                    getNewComments={this.getNewComments}
                                 />
                                 <Options
                                     id="Comment"
@@ -63,4 +84,4 @@ class OpenedPost extends Component {
 export default connect( state => ({
     post: state.posts.post,
     loading: state.posts.getOnePostLoading
-}), { GetOnePost } )(OpenedPost);
+}), { GetOnePost, GetNewComments } )(OpenedPost);
