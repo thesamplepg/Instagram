@@ -1,4 +1,4 @@
-const { getDatabase } = require('../utils/database');
+const { getCollection } = require('../utils/database');
 const { ObjectId } = require('mongodb');
 
 class Comment {
@@ -12,7 +12,7 @@ class Comment {
     }    
 
     save() {
-        const comments = getDatabase('instagram').collection('comments');
+        const comments = getCollection('comments');
 
         return comments.insertOne(this)
             .then(res => Promise.resolve(res))
@@ -20,7 +20,7 @@ class Comment {
     }
 
     static find (query, page) {
-        const comments = getDatabase('instagram').collection('comments');
+        const comments = getCollection('comments');
 
 
         return comments.find(query)
@@ -34,8 +34,12 @@ class Comment {
             });
     }
 
+    static updateMany(query) {
+        const comments = getCollection('comments');
+    }
+
     static delete (id) {
-        const comments = getDatabase('instagram').collection('comments');
+        const comments = getCollection('comments');
 
         let deletedComment;
 

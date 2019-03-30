@@ -1,4 +1,4 @@
-const { getDatabase } = require('../utils/database');
+const { getCollection } = require('../utils/database');
 
 class Account {
     constructor (data) {
@@ -19,7 +19,7 @@ class Account {
 
     save() {
 
-        return getDatabase('instagram').collection('accounts').insertOne(this)
+        return getCollection('accounts').insertOne(this)
             .then(result => {
                 return Promise.resolve(result);
             })
@@ -30,7 +30,7 @@ class Account {
     }
 
     static findOne(filter) {
-        return getDatabase('instagram').collection('accounts')
+        return getCollection('accounts')
             .findOne(filter)
             .then(res => Promise.resolve(res))
             .catch(err => {
@@ -55,7 +55,7 @@ class Account {
 
     static async findOneAndUpdate(filter, updateQuery) {
         try {
-            const updated = await getDatabase('instagram').collection('accounts')
+            const updated = getCollection('accounts')
                 .updateOne(filter, updateQuery);
 
             return Promise.resolve(updated)
@@ -66,7 +66,7 @@ class Account {
     }
 
     static async follow(follower, followingAccount) {
-        const accounts = getDatabase('instagram').collection('accounts');
+        const accounts = getCollection('accounts');
 
         try {
             await accounts.updateOne(
@@ -87,7 +87,7 @@ class Account {
     }
 
     static async unfollow(unfollower, unfollowingAccount) {
-        const accounts = getDatabase('instagram').collection('accounts');
+        const accounts = getCollection('accounts');
 
         try {
             await accounts.updateOne(

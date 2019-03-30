@@ -1,4 +1,4 @@
-const { getDatabase } = require('../utils/database');
+const { getCollection } = require('../utils/database');
 const { ObjectId } = require('mongodb');
 const Comment = require('./Comment');
 const Account = require('./Account');
@@ -14,7 +14,7 @@ class Post {
     }    
 
     save() {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts = getCollection('posts');
         let newPost;
 
         return posts.insertOne(this)
@@ -27,7 +27,7 @@ class Post {
     }
 
     static async find(query) {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts =getCollection('posts');
 
         const fetchedPosts = await posts.find(query.filter)
             .skip(query.skip || 0)
@@ -38,7 +38,7 @@ class Post {
     }
 
     static findOne(filter) {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts = getCollection('posts');
 
         return posts.findOne(filter)
             .then(post => Promise.resolve(post))
@@ -49,7 +49,7 @@ class Post {
     }
 
     static like (id, liker) {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts = getCollection('posts');
 
         return posts.updateOne({_id: ObjectId(id)}, {$push: { likes: liker }})
             .then(res => Promise.resolve({ success: true }))
@@ -60,7 +60,7 @@ class Post {
     }
 
     static unlike (id, unliker) {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts = getCollection('posts');
 
         return posts.updateOne({_id: ObjectId(id)}, {$pull: { likes: unliker }})
             .then(res => Promise.resolve({ success: true }))
@@ -71,7 +71,7 @@ class Post {
     }
 
     static delete (account, postId) {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts = getCollection('posts');
 
         return posts.deleteOne({_id: ObjectId(postId)})
             .then(res => {
@@ -90,7 +90,7 @@ class Post {
     }   
 
     static async addComment (comment) {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts = getCollection('posts');
 
         const newComment = await new Comment(comment).save();
 
@@ -106,7 +106,7 @@ class Post {
     }
 
     static async deleteComment (commentId) {
-        const posts = getDatabase('instagram').collection('posts');
+        const posts = getCollection('posts');
 
         const deletedComment = await Comment.delete(commentId);
 

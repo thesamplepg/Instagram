@@ -15,8 +15,8 @@ module.exports.connectDB = (callback) => {
     });
 }
 
-const getDatabase = (dataBaseName) => {
-    return client.db(dataBaseName);
+const getCollection = (collection) => {
+    return client.db('instagram').collection(collection);
 }
 
-module.exports.getDatabase = getDatabase;
+module.exports.getCollection = getCollection;
