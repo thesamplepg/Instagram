@@ -11,6 +11,7 @@ class Post {
         this.likes = [];
         this.date = Date.now();
         this.imageId = data.imageId;
+        this.avatar = data.avatar
     }    
 
     save() {
@@ -46,6 +47,20 @@ class Post {
                 console.log(err);
                 Promise.reject(err)
             });
+    }
+
+    static updateMany(filter, updateQuery) {
+        const posts = getCollection('posts');
+
+        return posts.updateMany(filter, updateQuery)
+            .then(res => {
+                return Promise.resolve({success: true});
+            })
+            .catch(err => {
+                console.log(err);
+                return Promise.reject({success: false});
+            })
+
     }
 
     static like (id, liker) {

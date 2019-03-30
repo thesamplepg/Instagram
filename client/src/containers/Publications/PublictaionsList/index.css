@@ -1,0 +1,6 @@
+.PubliacationsList {
+    width: 600px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}

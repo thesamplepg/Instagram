@@ -55,8 +55,6 @@ module.exports.getPublications = async(req, res) => {
 
     const user = await Account.findOne({userName: data.userName});
 
-    console.log(user.follows);
-
     const publications = await Post.find({
         filter: { creater: {$in: user.follows} },
         query: req.query.page
@@ -71,20 +69,27 @@ module.exports.createPost = async(req, res) => {
     if(req.session.token) {
 
         const data = await decodeJwt(req.session.token);
+        let postInfo;
 
         uploadImage(req.file.path)
             .then(result => {
-        
-                    
-                fs.removeSync(req.file.path);
-                const postInfo = {
+
+                fs.remove(req.file.path);
+                
+                postInfo = {
                     image: result.secure_url,
                     imageId: result.public_id,
                     creater: data.userName
                 }
+                
+                return Account.findOne({userName: data.userName});
+            
+                    
+            })
+            .then(creater => {
+                postInfo.avatar = creater.avatar;
                 const newPost = new Post(postInfo);
                 return newPost.save();
-                    
             })
             .then(post => {
                 res.json({ success: true, post });

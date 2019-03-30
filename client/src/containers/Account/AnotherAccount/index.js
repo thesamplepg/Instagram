@@ -6,6 +6,7 @@ import Avatar from '../Avatar';
 import ButtonLoader from '../../../components/ButtonLoader';
 import DigitalPart from '../DigitalPart';
 import AdditionalInformation from '../AdditionalInformation';
+import Posts from '../Posts';
 
 class AnotherAccount extends Component {
    
@@ -116,6 +117,7 @@ class AnotherAccount extends Component {
                             null 
                         }
                     </div>
+                    <Posts />
                 </div>  
             </React.Fragment>
         )

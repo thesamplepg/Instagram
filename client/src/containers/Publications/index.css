@@ -1,0 +1,25 @@
+.Container {
+    position: relative;
+    top: 100px;
+    width: 1024px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.Error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.74);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .Container {
+        width: 100%;
+    }
+}
