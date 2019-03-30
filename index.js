@@ -22,7 +22,7 @@ app.use(session({
         checkPeriod: 86400000
     })
 }));
-app.use('/static/', express.static(__dirname, '/client/static'))
+app.use('/static/', express.static(__dirname + '/client/static'))
 
 connectDB(() => {
 
@@ -34,7 +34,7 @@ connectDB(() => {
     app.use('/api/posts', postsApi);
 
     app.get('*', (req, res) => {
-        res.sendFile(fs.readFileSync(__dirname = '/client/build/index.html'))
+        res.sendFile(fs.readFileSync(__dirname + '/client/build/index.html', {encoding: 'utf-8'}))
     });
 
     const port = process.env.PORT || 5000;
