@@ -34,8 +34,18 @@ class Comment {
             });
     }
 
-    static updateMany(query) {
+    static updateMany(filter, updateQuery) {
         const comments = getCollection('comments');
+
+        return comments.updateMany(filter, updateQuery)
+            .then(res => {
+                return Promise.resolve({success: true});
+            })
+            .catch(err => {
+                console.log(err);
+                return Promise.reject({success: false});
+            })
+
     }
 
     static delete (id) {

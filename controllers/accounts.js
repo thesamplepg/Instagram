@@ -2,6 +2,7 @@ const Account = require('../models/Account');
 const jwt = require('jsonwebtoken');
 const fs = require('fs-extra');
 const { uploadImage, removeImage } = require('../utils/configs');
+const Comment = require('../models/Comment');
 
 module.exports.searchSimilarAccount = async(req, res) => {
     
@@ -57,8 +58,13 @@ module.exports.changeAvatar = (req, res) => {
                 gravity: 'face',
                 crop: 'thumb'
             })
-                .then((result) => {
+                .then(async (result) => {
                     fs.removeSync(req.file.path);
+
+                    await Comment.updateMany(
+                        {creater: data.userName},
+                        {$set: { avatar: result.secure_url }}
+                    );
 
                     resultData = result;
 
