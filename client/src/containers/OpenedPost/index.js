@@ -8,7 +8,7 @@ import Loader from '../../components/Loader';
 import UserNameSection from '../../components/UserNameSection';
 import Options from '../Options';
 import CommentAddSection from '../CommentAddSection';
-import Comments from '../Comments';
+import Comments from '../../components/Comments';
 
 class OpenedPost extends Component {
 
@@ -22,7 +22,7 @@ class OpenedPost extends Component {
         let output = <Loader />
 
         if(!this.props.loading) {
-            const { image, creater, avatar, likes, date } = this.props.post;
+            const { image, creater, avatar, likes, date, comments } = this.props.post;
 
             output = (
                 <div className={classes.OpenedPost}>
@@ -37,7 +37,9 @@ class OpenedPost extends Component {
                                     userName={creater}
                                     avatar={avatar}
                                 />
-                                <Comments/>
+                                <Comments
+                                    comments={comments}
+                                />
                                 <Options
                                     id="Comment"
                                     likes={likes}

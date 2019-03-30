@@ -1,0 +1,42 @@
+.Comment {
+    display: flex;
+    align-items: center;
+    padding: 1rem;   
+    position: relative;
+}
+
+.Comment img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.Information {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.897);
+    padding-right: 1rem;
+}
+
+.UserName {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.815);
+    margin-right: 0.5rem;
+}
+
+.Date {
+    font-weight: 600;
+    color: rgb(173, 173, 173);
+    margin-top: 1rem;
+}
+
+.Like {
+    position: absolute;
+    color: var(--color-blue);
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
