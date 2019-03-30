@@ -34,7 +34,8 @@ connectDB(() => {
     app.use('/api/posts', postsApi);
 
     app.get('*', (req, res) => {
-        res.sendFile(fs.readFileSync(__dirname + '/client/build/index.html', {encoding: 'utf-8'}))
+        const html = fs.readFileSync(__dirname + '/client/build/index.html', {encoding: 'utf-8'});
+        res.sendFile(html);
     });
 
     const port = process.env.PORT || 5000;
