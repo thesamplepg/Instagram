@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GetOnePost, GetNewComments, LikeComment, UnlikeComment } from '../../store/actions/posts';
+import { GetOnePost, GetNewComments, LikeComment, UnlikeComment, AddComment } from '../../store/actions/posts';
 
 import classes from './index.css';
 import Header from '../Header';
@@ -13,12 +13,15 @@ import Comments from '../../components/Comments';
 class OpenedPost extends Component {
 
     state = {
-        commentsPage: 1
+        commentsPage: 1,
+        adaptive: false
     }
 
     componentDidMount() {
         const id = window.location.pathname.split('/')[2]
         this.props.GetOnePost(id);
+
+        if(window.innerWidth < 765) this.setState({adaptive: true});
     }
 
     toggleLikeComment = async (id, type, index) => {
@@ -59,37 +62,58 @@ class OpenedPost extends Component {
         if(!this.props.loading) {
             const { image, creater, avatar, likes, date, comments, commentsList } = this.props.post;
 
+            const rightSection = (
+                <div className={classes.RightSection}>
+                    <UserNameSection 
+                        userName={creater}
+                        avatar={avatar}
+                    />
+                    <Comments
+                        newComments={comments.length > commentsList.length}
+                        comments={commentsList}
+                        getNewComments={this.getNewComments}
+                        userName={this.props.userName}
+                        toggleLike={this.toggleLikeComment}
+                        loading={this.props.commentsLoading}
+                    />
+                    <Options
+                        id="Comment"
+                        likes={likes}
+                        date={date}
+                        postId={this.props.post._id}
+                    />
+                    <CommentAddSection 
+                        id="Comment"
+                    />
+                </div>
+            )
+
             output = (
                 <div className={classes.OpenedPost}>
                     <Header />
                     <div className={classes.Centered}>
                         <div className={classes.Container}>
+                            {this.state.adaptive ? <UserNameSection userName={creater} avatar={avatar}/> : null}
                             <span className={classes.ImageContainer}>
                                 <img src={image} alt="fullimage"/>
                             </span>
-                            <div className={classes.RightSection}>
-                                <UserNameSection 
-                                    userName={creater}
-                                    avatar={avatar}
-                                />
-                                <Comments
-                                    newComments={comments.length > commentsList.length}
-                                    comments={commentsList}
-                                    getNewComments={this.getNewComments}
-                                    userName={this.props.userName}
-                                    toggleLike={this.toggleLikeComment}
-                                    loading={this.props.commentsLoading}
-                                />
+                            {!this.state.adaptive ? rightSection : null}
+                            {
+                                this.state.adaptive ?
                                 <Options
                                     id="Comment"
                                     likes={likes}
                                     date={date}
                                     postId={this.props.post._id}
-                                />
+                                /> :
+                                null
+                            }
+                            {
+                                this.state.adaptive ?
                                 <CommentAddSection 
                                     id="Comment"
-                                />
-                            </div>
+                                /> : null
+                            }
                         </div>
                     </div>
                 </div>

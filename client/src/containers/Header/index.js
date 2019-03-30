@@ -92,7 +92,7 @@ class Header extends Component {
                 <div 
                     className={classes.Container}
                     style={{
-                        padding: this.state.scrolled ? '7px 20px' : '26px 20px'
+                        padding: this.state.scrolled ? '10px 20px' : '26px 20px'
                     }}
                 >
                     <div className={classes.Logo}>
