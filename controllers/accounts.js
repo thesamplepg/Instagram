@@ -1,7 +1,7 @@
 const Account = require('../models/Account');
 const jwt = require('jsonwebtoken');
 const fs = require('fs-extra');
-const { uploadImage, removeImage } = require('../utils/configs');
+const { uploadImage, removeImage, decodeJwt } = require('../utils/configs');
 const Comment = require('../models/Comment');
 
 module.exports.searchSimilarAccount = async(req, res) => {

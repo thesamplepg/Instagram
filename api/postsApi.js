@@ -9,6 +9,8 @@ const { upload } = require('../utils/configs');
 router.get('/', postsControllers.getPosts);
 // /api/posts/post => GET
 router.get('/post', postsControllers.getOnePost);
+// /api/posts/publications => GET
+router.get('/publications', postsControllers.getPublications);
 // /api/posts/new => POST
 router.post('/new', upload.single('image'), postsControllers.createPost);
 // /api/posts/delete => DELETE

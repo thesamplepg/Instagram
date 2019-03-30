@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faSpinner, faCamera, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSpinner, faCamera, faUser } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -96,7 +96,9 @@ class Header extends Component {
                     }}
                 >
                     <div className={classes.Logo}>
-                        <Icon icon={ faInstagram }/>
+                        <NavLink to="/">
+                            <Icon icon={ faInstagram }/>
+                        </NavLink>
                     </div>
                     <div className={classes.Search}>
                         <div className={classes.InputWrapper}>
@@ -117,9 +119,6 @@ class Header extends Component {
                             <NavLink to="/accounts/post">
                                 <Icon icon={faCamera}/>
                             </NavLink>
-                        </div>
-                        <div>
-                            <Icon icon={faHeart}/>
                         </div>
                         <div>
                             <NavLink to={`/${this.props.userName}`}>

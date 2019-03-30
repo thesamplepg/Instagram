@@ -22,6 +22,10 @@
     flex-basis: calc((1024px - 215px - 2rem) / 2);
 }
 
+.Logo a {
+    color: #000;
+}
+
 .Logo svg {
     font-size: 2rem;
 }

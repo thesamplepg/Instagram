@@ -33,11 +33,6 @@ connectDB(() => {
     app.use('/api/accounts', accountsApi);
     app.use('/api/posts', postsApi);
 
-    app.get('*', (req, res) => {
-        const html = fs.readFileSync(__dirname + '/client/build/index.html', {encoding: 'utf-8'});
-        res.sendFile(html);
-    });
-
     const port = process.env.PORT || 5000;
 
     app.listen(port, () => {

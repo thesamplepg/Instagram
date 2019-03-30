@@ -49,6 +49,23 @@ module.exports.getOnePost = (req, res) => {
 
 }
 
+module.exports.getPublications = async(req, res) => {
+    
+    const data = await decodeJwt(req.session.token);
+
+    const user = await Account.findOne({userName: data.userName});
+
+    console.log(user.follows);
+
+    const publications = await Post.find({
+        filter: { creater: {$in: user.follows} },
+        query: req.query.page
+    });
+
+    res.json({publications});
+    
+}
+
 module.exports.createPost = async(req, res) => {
 
     if(req.session.token) {

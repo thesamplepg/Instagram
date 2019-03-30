@@ -27,7 +27,7 @@ class Post {
     }
 
     static async find(query) {
-        const posts =getCollection('posts');
+        const posts = getCollection('posts');
 
         const fetchedPosts = await posts.find(query.filter)
             .skip(query.skip || 0)

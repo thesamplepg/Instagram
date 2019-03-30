@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GetPosts } from '../../../store/actions/posts';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 
 import classes from './index.css';
 import BlockLoader from '../../../components/BlockLoader';
@@ -50,6 +50,15 @@ class Posts extends Component {
                                 />
                             })
                         }
+                    </div>
+                )
+            } else {
+                output = (
+                    <div className={classes.Error}>
+                        There are no posts
+                        <NavLink to="/accounts/post">
+                            Add your first post
+                        </NavLink>
                     </div>
                 )
             }

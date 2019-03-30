@@ -115,3 +115,11 @@ module.exports.authorization = async(req, res) => {
 
 }
 
+module.exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if(err) return console.log(err);
+    
+        res.json({success: true});
+    });
+}
+

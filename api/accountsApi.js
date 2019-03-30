@@ -9,6 +9,8 @@ const { upload } = require('../utils/configs');
 router.post('/signup', authorizationControllers.signup);
 // /api/accounts/login => POST
 router.post('/login', authorizationControllers.login);
+// /api/account/logout => GET
+router.get('/logout', authorizationControllers.logout);
 // /api/accounts/authorization => GET
 router.get('/authorization', authorizationControllers.authorization);
 // /api/accounts/search => GET

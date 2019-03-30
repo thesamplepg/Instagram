@@ -40,7 +40,7 @@ class Account {
     }
 
     static async findSimilars(exp) {
-        return getDatabase('instagram').collection('accounts')
+        return getCollection('accounts')
             .find({userName: {$regex: exp}})
                 .project({userName: 1, fullName: 1, avatar: 1, _id: 0})
                 .toArray()

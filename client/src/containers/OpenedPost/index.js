@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GetOnePost, GetNewComments, LikeComment, UnlikeComment, AddComment } from '../../store/actions/posts';
+import { GetOnePost, GetNewComments, LikeComment, UnlikeComment } from '../../store/actions/posts';
 
 import classes from './index.css';
 import Header from '../Header';

@@ -12,6 +12,13 @@ import Posts from '../Posts';
 
 class Authorizied extends Component {
    
+    logout = async () => {
+        const res = await fetch('/api/accounts/logout');
+        const data = await res.json();
+
+        if(data.success) window.location.reload();
+    }
+
     render() {
 
         const { account } = this.props;
@@ -32,8 +39,8 @@ class Authorizied extends Component {
                                         <NavLink to={this.props.location.pathname + '/edit'} className={classes.EditButton}>
                                             Edit profile
                                         </NavLink>
-                                        <div className={classes.Logout}>
-                                            <Icon  icon={faSignOutAlt} />
+                                        <div className={classes.Logout} onClick={this.logout}>
+                                            <Icon icon={faSignOutAlt} />
                                         </div>
                                     </div>
                                 </div>

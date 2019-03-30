@@ -22,9 +22,17 @@ class Account extends Component {
     componentDidMount() {
 
         window.addEventListener('resize', this.resizeHandler);
+        const path = this.props.location.pathname.split('/')[1]
 
         if(isAuthorizied(this.props)) {
-            this.props.GetAccount(this.props.userName);
+            if(this.props.account) {
+                if(this.props.account.userName !== path)
+                {
+                    this.props.GetAccount(this.props.userName);
+                }
+            } else {
+                this.props.GetAccount(this.props.userName);
+            }
         }
     }
 
@@ -47,7 +55,6 @@ class Account extends Component {
                 }
             }
         }
-
     }
 
 
