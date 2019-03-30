@@ -102,16 +102,3 @@ export const AddComment = (comment, postId) => async dispatch => {
 export const LikeComment = (liker, index) => ({ type: actionType.LIKE_COMMENT, payload: { liker, index } });
 export const UnlikeComment = (unliker, index) => ({ type: actionType.UNLIKE_COMMENT, payload: { unliker, index } });
 
-export const GetPublications = (page) => async dispatch => {
-    dispatch({ type: actionType.GET_PUBLICATIONS });
-
-    try {
-        const res = await fetch(`/api/posts/publications?page=${page}`);
-        const data = await res.json();
-
-        dispatch({ type: actionType.GET_PUBLICATIONS_TRUE, payload: { publications: data.publications } });
-    } catch (error) {
-        console.log(error);
-        dispatch({ type: actionType.GET_NEW_COMMENTS_FALSE });
-    }
-}
