@@ -104,6 +104,7 @@
 
     .Top {
         width: 100%;
+        display: block;
     }
 
     .Top div {
@@ -111,7 +112,9 @@
     }
 
     .Logout {
-        margin-left: 2rem !important;
+        width: 100%;
+        margin-left: 0rem !important;
+        text-align: center;
     }
 
     .Button {

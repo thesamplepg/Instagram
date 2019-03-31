@@ -37,7 +37,7 @@ class Authorizied extends Component {
                                     </div>
                                     <div className={classes.ButtonsContainer}>
                                         <div className={classes.Logout} onClick={this.logout}>
-                                            <Icon icon={faSignOutAlt} />
+                                            <Icon icon={faSignOutAlt} /> Logout
                                         </div>
                                     </div>
                                 </div>
