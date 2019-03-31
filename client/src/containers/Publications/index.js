@@ -8,7 +8,6 @@ import classes from './index.css';
 import PublicationsList from './PublictaionsList';
 import Followers from '../Followers';
 import { isAuthorizied } from '../../components/Utilits';
-import Footer from '../../components/Footer';
 
 class Publications extends Component {  
 
@@ -89,7 +88,6 @@ class Publications extends Component {
                     <Header />
                     { output }
                 </div>  
-                <Footer />
             </React.Fragment>
         )
     }
