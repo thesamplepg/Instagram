@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import { Like, Unlike } from '../../store/actions/posts';
 
 import classes from './index.css';
 import Icon from '../../components/Icon';
@@ -29,19 +28,6 @@ class Options extends Component {
         }
     }
 
-    toggleLike = async (dispatch, type) => {
-        dispatch();
-
-        await fetch(`/api/posts/${type}`, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT',
-            body: JSON.stringify({ postId: this.props.postId })
-        })
-    }
-
-
     render() {
         const date = new Date(this.props.date);
         const liked = this.props.likes.indexOf(this.props.userName) > -1;
@@ -53,8 +39,8 @@ class Options extends Component {
                         className={[classes.Like, liked ? classes.Liked : ''].join(' ')} 
                         onClick={() => {
                             !liked ? 
-                            this.toggleLike(() => this.props.Like(this.props.userName), 'like') : 
-                            this.toggleLike(() => this.props.Unlike(this.props.userName), 'unlike')
+                            this.props.toggleLike('like') :
+                            this.props.toggleLike('unlike')
                         }}
                     >
                         <Icon icon={faHeart}/>
@@ -78,4 +64,4 @@ class Options extends Component {
 
 export default connect( state => ({
     userName: state.authoriziedAccount.userName
-}) , { Like, Unlike })(Options);
+}))(Options);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GetPublications } from '../../store/actions/publications';
+import { GetPublications, PublicationLike, PublicationUnlike } from '../../store/actions/publications';
 
 import Loader from '../../components/Loader';
 import Header from '../Header';
@@ -11,7 +11,8 @@ import Followers from '../Followers';
 class Publications extends Component {  
 
     state = {
-        page: 0
+        page: 0,
+        addCommentLoading: false
     }
 
     componentDidMount() {
@@ -27,6 +28,33 @@ class Publications extends Component {
         }
     }
 
+    toggleLike = async(index, type, postId) => {
+        if(type === 'like') this.props.PublicationLike(this.props.userName, index);
+        else this.props.PublicationUnlike(this.props.userName, index);
+
+        await fetch(`/api/posts/${type}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            body: JSON.stringify({ postId })
+        });
+    }
+
+    addComment = async(comment, postId) => {
+        this.setState({addCommentLoading: true});
+
+        await fetch('/api/posts/comment', {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({ comment, postId })
+        });
+
+        this.setState({addCommentLoading: false});
+    }
+
     render() {
         let output = <Loader />
 
@@ -36,6 +64,10 @@ class Publications extends Component {
                     <div className={classes.Container}>
                         <PublicationsList 
                             publications={this.props.publications}
+                            toggleLike={this.toggleLike}
+                            userName={this.props.userName}
+                            addComment={this.addComment}
+                            commentLoading={this.state.addCommentLoading}
                         />
                         <Followers />
                     </div>
@@ -49,7 +81,7 @@ class Publications extends Component {
             }
         }
 
-        return (
+        return (    
             <div className={classes.Publications}>
                 <Header />
                 { output }
@@ -59,7 +91,8 @@ class Publications extends Component {
 }
 
 export default connect( state => ({
+    userName: state.authoriziedAccount.userName,
     authorizationLoading: state.authoriziedAccount.authorizationLoading,
     publications: state.publications.publications,
     loading: state.publications.getPublicationsLoading
-}), { GetPublications }  )(Publications);
+}), { GetPublications, PublicationLike, PublicationUnlike }  )(Publications);

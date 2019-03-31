@@ -8,7 +8,17 @@ const PubliacationsList = (props) => {
         <ul className={classes.PubliacationsList}>
             {
                 props.publications.map((publication, index) => {
+                    const isLiked = publication.likes.indexOf(props.userName) > -1;
+ 
                     return <Publication 
+                        liked={isLiked}
+                        toggleLike={() => {
+                            !isLiked ?
+                            props.toggleLike(index, 'like', publication._id) :
+                            props.toggleLike(index, 'unlike', publication._id)
+                        }}
+                        addComment={(comment) => props.addComment(comment, publication._id)}
+                        commentLoading={props.commentLoading}
                         key={index}
                         {...publication}
                     />

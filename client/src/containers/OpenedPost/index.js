@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GetOnePost, GetNewComments, LikeComment, UnlikeComment } from '../../store/actions/posts';
+import { 
+    GetOnePost, 
+    GetNewComments, 
+    LikeComment, 
+    UnlikeComment, 
+    Like, 
+    Unlike, 
+    AddComment 
+} from '../../store/actions/posts';
 
 import classes from './index.css';
 import Header from '../Header';
@@ -22,6 +30,20 @@ class OpenedPost extends Component {
         this.props.GetOnePost(id);
 
         if(window.innerWidth < 765) this.setState({adaptive: true});
+    }
+
+    toggleLike = async (type) => {
+
+        if(type === 'like') this.props.Like(this.props.userName); 
+        else this.props.Unlike(this.props.userName);
+
+        await fetch(`/api/posts/${type}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            body: JSON.stringify({ postId: this.props.post._id })
+        });
     }
 
     toggleLikeComment = async (id, type, index) => {
@@ -54,6 +76,10 @@ class OpenedPost extends Component {
             }
         }
     }
+
+    addComment = (comment) => {
+        this.props.AddComment(comment, this.props.post._id);
+    }
     
 
     render() {
@@ -80,10 +106,12 @@ class OpenedPost extends Component {
                         id="Comment"
                         likes={likes}
                         date={date}
-                        postId={this.props.post._id}
+                        toggleLike={this.toggleLike}
                     />
                     <CommentAddSection 
                         id="Comment"
+                        loading={this.props.addCommentLoading}
+                        addComment={this.addComment}
                     />
                 </div>
             )
@@ -104,7 +132,7 @@ class OpenedPost extends Component {
                                     id="Comment"
                                     likes={likes}
                                     date={date}
-                                    postId={this.props.post._id}
+                                    toggleLike={this.toggleLike}
                                 /> :
                                 null
                             }
@@ -112,6 +140,8 @@ class OpenedPost extends Component {
                                 this.state.adaptive ?
                                 <CommentAddSection 
                                     id="Comment"
+                                    loading={this.props.addCommentLoading}
+                                    addComment={this.addComment}
                                 /> : null
                             }
                         </div>
@@ -125,8 +155,17 @@ class OpenedPost extends Component {
 }
 
 export default connect( state => ({
+    addCommentLoading: state.posts.addCommentLoading,
     userName: state.authoriziedAccount.userName,
     post: state.posts.post,
     loading: state.posts.getOnePostLoading,
     commentsLoading: state.posts.getNewCommentsLoading
-}), { GetOnePost, GetNewComments, LikeComment, UnlikeComment } )(OpenedPost);
+}), { 
+    GetOnePost,
+    GetNewComments, 
+    LikeComment, 
+    UnlikeComment, 
+    Like, 
+    Unlike, 
+    AddComment 
+} )(OpenedPost);

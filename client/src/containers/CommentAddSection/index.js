@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { AddComment } from '../../store/actions/posts';
 
 import ButtonLoader from '../../components/ButtonLoader';
 import classes from './index.css';
@@ -15,7 +13,7 @@ class CommentAddSection extends Component {
 
     submitComment = (e) => {
         if(e.key === 'Enter' && this.state.comment.length > 0) {
-            this.props.AddComment(this.state.comment, this.props.post._id);
+            this.props.addComment(this.state.comment);
             e.target.blur();
         }
     }
@@ -39,7 +37,4 @@ class CommentAddSection extends Component {
     }
 }
 
-export default connect( state => ({
-    post: state.posts.post,
-    loading: state.posts.addCommentLoading
-}), { AddComment } )(CommentAddSection);
+export default CommentAddSection;

@@ -20,6 +20,20 @@
     max-height: 850px;
 }
 
+.CommentLink {
+    margin: 0 1rem 1rem 1rem;
+}
+
+.CommentLink a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+
+.CommentLink a:active {
+    opacity: 0.5;
+}
+
 @media (max-width: 600px) {
     .Publication {
         border: none;

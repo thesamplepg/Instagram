@@ -23,6 +23,27 @@ const posts = (state = initialState, action) => {
                 ...state,
                 getPublicationsLoading: false
             }
+        case actionTypes.PUBLICATION_LIKE:
+            
+            const publications = [...state.publications];
+
+            publications[action.payload.index].likes.push(action.payload.liker);
+        
+            return {
+                ...state,
+                publications 
+            }
+        case actionTypes.PUBLICATION_UNLIKE:
+            
+            const { index, unliker } = action.payload;
+            const newPublications = [...state.publications];
+
+            newPublications[index].likes.splice(newPublications[index].likes.indexOf(unliker), 1);
+
+            return {
+                ...state,
+                publications: newPublications
+            }
         default: return state;
     }
 }
