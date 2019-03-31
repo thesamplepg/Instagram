@@ -27,6 +27,9 @@
 .ImageContainer {
     min-width: 400px;
     min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #000;
     flex-shrink: 1;
     overflow: hidden;
@@ -34,13 +37,7 @@
 
 .ImageContainer img {
     max-width: calc(1024px - 334px);
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%); 
     max-height: 100vh;
-    margin-bottom: -1rem;
 }
 
 .RightSection {
