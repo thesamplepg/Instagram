@@ -39,14 +39,14 @@ class App extends Component {
     return (
       <React.Fragment>
         {this.props.authorizationLoading ? <Loader /> : null}
-        <div className={classes.App}>
-          <Route exact path="/" component={Publications}/>
-          <Route exact path="/:userName" component={Account}/>
-          <Route path="/accounts/login" component={Login}/>
-          <Route path="/accounts/signup" component={Signup}/>
-          <Route path="/accounts/post" component={CreatePost}/>
-          <Route path="/post/:id" component={OpenedPost}/>
-        </div>
+          <div className={classes.App}>
+            <Route exact path="/" component={Publications}/>
+            <Route exact path="/:userName" component={Account}/>
+            <Route path="/accounts/login" component={Login}/>
+            <Route path="/accounts/signup" component={Signup}/>
+            <Route path="/accounts/post" component={CreatePost}/>
+            <Route path="/post/:id" component={OpenedPost}/>
+          </div>
         <Footer />
       </React.Fragment>
     );

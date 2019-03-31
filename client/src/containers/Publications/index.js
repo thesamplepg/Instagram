@@ -7,6 +7,7 @@ import Header from '../Header';
 import classes from './index.css';
 import PublicationsList from './PublictaionsList';
 import Followers from '../Followers';
+import { isAuthorizied } from '../../components/Utilits';
 
 class Publications extends Component {  
 
@@ -16,14 +17,14 @@ class Publications extends Component {
     }
 
     componentDidMount() {
-        if(!this.props.authorizationLoading && this.props.publications === null) {
+        if(isAuthorizied(this.props) && this.props.publications === null) {
             this.props.GetPublications(this.state.page);
         }
     }
     
 
     componentDidUpdate() {
-        if(!this.props.authorizationLoading && this.props.publications === null) {
+        if(isAuthorizied(this.props) && this.props.publications === null) {
             this.props.GetPublications(this.state.page);
         }
     }
@@ -93,6 +94,7 @@ class Publications extends Component {
 export default connect( state => ({
     userName: state.authoriziedAccount.userName,
     authorizationLoading: state.authoriziedAccount.authorizationLoading,
+    authorization: state.authoriziedAccount.authorization,
     publications: state.publications.publications,
     loading: state.publications.getPublicationsLoading
 }), { GetPublications, PublicationLike, PublicationUnlike }  )(Publications);

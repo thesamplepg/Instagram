@@ -7,6 +7,7 @@ const { connectDB } = require('./utils/database');
 const accountsApi = require('./api/accountsApi');
 const postsApi = require('./api/postsApi');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 
@@ -22,7 +23,13 @@ app.use(session({
         checkPeriod: 86400000
     })
 }));
-app.use('/static/', express.static(__dirname + '/client/static'))
+
+if(process.env.NODE_ENV === 'production') {
+    app.use('/static/', express.static(__dirname + '/client/build/static'));
+    app.use('/favicon.ico', express.static(__dirname + '/client/build/favicon.ico'));
+    app.use('/manifest.json', express.static(__dirname + '/client/build/manifest.json'));
+}
+
 
 connectDB(() => {
 
@@ -32,6 +39,12 @@ connectDB(() => {
 
     app.use('/api/accounts', accountsApi);
     app.use('/api/posts', postsApi);
+
+    if(process.env.NODE_ENV === 'production') {
+        app.get('*', (req, res) => {
+            res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        });
+    }
 
     const port = process.env.PORT || 5000;
 

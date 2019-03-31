@@ -1,9 +1,12 @@
 .OpenedPost {
     position: relative;
     width: 1024px;
+    min-height: calc(100vh - 32px - 26px * 2 - 16px * 3 - 23px);
     margin: 1rem auto;
     margin-bottom: 3rem;
     top: 100px;
+    display: flex;
+    align-items: center;
 }
 
 .Centered {
