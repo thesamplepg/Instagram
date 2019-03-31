@@ -30,6 +30,10 @@ class Post extends React.Component {
             height: this.post.current.clientWidth
         })
     }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.resizeHandler);
+    }
     
 
     render () {
