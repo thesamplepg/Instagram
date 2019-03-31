@@ -6,10 +6,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { logger } from './store/middlewares/logger';
+// import { logger } from './store/middlewares/logger';
 import rootReducer from './store/reducers';
 
-const store = createStore(rootReducer, applyMiddleware(logger, thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 window.store = store;
 

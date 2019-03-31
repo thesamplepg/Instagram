@@ -13,7 +13,6 @@ import Publications from './containers/Publications';
 import CreatePost from './containers/CreatePost';
 import OpenedPost from './containers/OpenedPost';
 import { isAuthorizied } from './components/Utilits/index';
-import Footer from './components/Footer';
 
 class App extends Component {
 
@@ -47,7 +46,6 @@ class App extends Component {
             <Route path="/accounts/post" component={CreatePost}/>
             <Route path="/post/:id" component={OpenedPost}/>
           </div>
-        <Footer />
       </React.Fragment>
     );
   }
