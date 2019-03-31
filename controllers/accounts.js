@@ -1,9 +1,10 @@
 const Account = require('../models/Account');
 const jwt = require('jsonwebtoken');
 const fs = require('fs-extra');
-const { uploadImage, removeImage, decodeJwt } = require('../utils/configs');
+const { uploadImage, removeImage, decodeJwt, toLower } = require('../utils/configs');
 const Comment = require('../models/Comment');
 const Post = require('../models/Post');
+const ValidatorClass = require('../utils/validator');
 
 module.exports.searchSimilarAccount = async(req, res) => {
     

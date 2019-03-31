@@ -45,6 +45,20 @@ module.exports.decodeJwt = (token) => {
     });
 }
 
+module.exports.toLower = (data) => {
+    const keys = Object.keys(data);
+    const result = {};
+
+    keys.forEach((key) => {
+        if(typeof data[key] === 'string') 
+        {
+            result[key] = data[key].toLowerCase();
+        }
+    });
+
+    return result;
+}
+
 
 
 module.exports.upload = multer({storage});

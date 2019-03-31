@@ -14,7 +14,7 @@ const Publication = (props) => {
                 userName={props.creater}
                 avatar={props.avatar}
             />
-            <div className={classes.ImageContainer}>
+            <div className={classes.ImageContainerPub}>
                 <img src={props.image} alt="publication"/>
             </div>
             <Options

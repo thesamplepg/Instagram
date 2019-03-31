@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Header from '../../Header';
 import classes from '../index.css';
@@ -36,9 +36,6 @@ class Authorizied extends Component {
                                         { account.userName }
                                     </div>
                                     <div className={classes.ButtonsContainer}>
-                                        <NavLink to={this.props.location.pathname + '/edit'} className={classes.EditButton}>
-                                            Edit profile
-                                        </NavLink>
                                         <div className={classes.Logout} onClick={this.logout}>
                                             <Icon icon={faSignOutAlt} />
                                         </div>

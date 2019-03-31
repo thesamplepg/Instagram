@@ -76,6 +76,19 @@ class Account {
         }
     }
 
+    static updateMany(filter, updateQuery) {
+        const accounts = getCollection('accounts');
+
+        return accounts.updateMany(filter, updateQuery)
+            .then(res => {
+                return Promise.resolve({success: true});
+            })
+            .catch(err => {
+                console.log(err);
+                return Promise.reject({ success: false });
+            })
+    }
+
     static async follow(follower, followingAccount) {
         const accounts = getCollection('accounts');
 

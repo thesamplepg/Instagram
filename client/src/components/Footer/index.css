@@ -1,0 +1,16 @@
+.Footer {
+    padding: 1rem;
+    width: 100%;
+    color: #afafaf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #e6e6e6;
+    position: relative;
+    z-index: 1000000;
+    margin-top: 1rem;
+}
+
+.Footer svg {
+    margin-right: 1rem;
+}

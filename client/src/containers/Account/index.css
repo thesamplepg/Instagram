@@ -1,7 +1,7 @@
 .Account {
     width: 100%;
     position: relative;
-    top: 5rem;
+    padding-top: 5rem;
     background-color: #fafafa;
 }
 
@@ -37,25 +37,13 @@
     max-width: 420px !important;
 }
 
-.Top .EditButton {
-    padding: 0.5rem 1rem;
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    margin: 0 0.8rem;
-    color: rgba(0, 0, 0, 0.856);
-    text-decoration: none;
-}
-
 .Top .EditButton:active  {
     opacity: 0.5;
 }
 
 .Top .Logout {
     cursor: pointer;
-    margin-left: 0px;
+    margin-left: 1rem;
     padding: 0.5rem 0.7rem;
     border-radius: 5px;
     border: 1px solid #e6e6e6;
@@ -115,9 +103,6 @@
     }
 
     .Top {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
         width: 100%;
     }
 
@@ -125,8 +110,8 @@
         padding: 0.5rem 0;
     }
 
-    .EditButton {
-        margin: 0 1rem 0 0 !important;
+    .Logout {
+        margin-left: 2rem !important;
     }
 
     .Button {

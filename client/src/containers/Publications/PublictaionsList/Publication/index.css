@@ -9,7 +9,7 @@
     margin-top: 0rem;
 }
 
-.ImageContainer {
+.ImageContainerPub {
     width: 100%;
     min-height: 170px;
     min-width: 250px;
@@ -19,7 +19,7 @@
     background-color: #000;
 }
 
-.ImageContainer img {
+.ImageContainerPub img {
     max-width: 100%;
     max-height: 850px;
 }
