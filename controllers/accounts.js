@@ -36,6 +36,16 @@ module.exports.getAccount = async(req, res) => {
     }
 }
 
+module.exports.getFollowers = async(req, res) => {
+
+    const data = await decodeJwt(req.session.token);
+
+    const followers = await Account.find({ follows: data.userName });
+
+    res.json({followers});
+
+}
+
 module.exports.changeAvatar = (req, res) => {  
     
     if(req.session.token) 

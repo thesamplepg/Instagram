@@ -128,22 +128,31 @@ class OpenedPost extends Component {
                             {!this.state.adaptive ? rightSection : null}
                             {
                                 this.state.adaptive ?
-                                <Options
-                                    id="Comment"
-                                    likes={likes}
-                                    date={date}
-                                    toggleLike={this.toggleLike}
-                                /> :
-                                null
+                                (
+                                    <React.Fragment>
+                                        <Options
+                                            id="Comment"
+                                            likes={likes}
+                                            date={date}
+                                            toggleLike={this.toggleLike}
+                                        />
+                                        <Comments 
+                                            newComments={comments.length > commentsList.length}
+                                            comments={commentsList}
+                                            getNewComments={this.getNewComments}
+                                            userName={this.props.userName}
+                                            toggleLike={this.toggleLikeComment}
+                                            loading={this.props.commentsLoading}
+                                        />
+                                        <CommentAddSection 
+                                            id="Comment"
+                                            loading={this.props.addCommentLoading}
+                                            addComment={this.addComment}
+                                        />
+                                    </React.Fragment>
+                                ) : null
                             }
-                            {
-                                this.state.adaptive ?
-                                <CommentAddSection 
-                                    id="Comment"
-                                    loading={this.props.addCommentLoading}
-                                    addComment={this.addComment}
-                                /> : null
-                            }
+                            
                         </div>
                     </div>
                 </div>

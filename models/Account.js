@@ -34,8 +34,19 @@ class Account {
             .findOne(filter)
             .then(res => Promise.resolve(res))
             .catch(err => {
-                Promise.reject(err);
+                return Promise.reject(err);
                 console.log(err)
+            });
+    }
+
+    static async find(filter) {
+        return getCollection('accounts')
+            .find(filter)
+            .toArray()
+            .then(res => Promise.resolve(res))
+            .catch(err => {
+                console.log(err);
+                return Promise.reject({success: false})
             });
     }
 

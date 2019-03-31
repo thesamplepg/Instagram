@@ -5,6 +5,10 @@
     margin: 2rem 0;
 }
 
+.Publication:first-child {
+    margin-top: 0rem;
+}
+
 .ImageContainer {
     width: 100%;
     min-height: 170px;
@@ -38,9 +42,5 @@
     .Publication {
         border: none;
         width: 100%;
-    }
-
-    .Publication:first-child {
-        margin-top: 0.1rem;
     }
 }

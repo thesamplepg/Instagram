@@ -20,6 +20,7 @@
 
 .Logo {
     flex-basis: calc((1024px - 215px - 2rem) / 2);
+    flex-shrink: 1.2;
 }
 
 .Logo a {
@@ -98,7 +99,7 @@ svg:nth-child(3) {
 }
 
 @media (max-width: 500px) {
-    .Search {
-        display: none;
+    .Search .InputWrapper {
+        width: 100px;
     }
 }

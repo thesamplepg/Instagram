@@ -1,13 +1,12 @@
 .SearchResults {
     max-height: 362px;
-    overflow-y: auto;
+    overflow-y: scroll;
     width: 225px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 15vh;
+    top: calc(32px + 26px * 2 - 10px);
     border-radius: 3px;
-    overflow: hidden;
     background-color: #fff;
     box-shadow: 0 0 2px 1px #e6e6e6;
     z-index: 200;

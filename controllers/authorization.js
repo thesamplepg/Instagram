@@ -94,15 +94,22 @@ module.exports.login = async(req, res) => {
     }
 }
 
-module.exports.authorization = async(req, res) => {
+module.exports.authorization = (req, res) => {
 
     if(req.session.token) {
 
-        jwt.verify(req.session.token, require('../keys').jwt, (err, data) => {
+        jwt.verify(req.session.token, require('../keys').jwt, async(err, data) => {
 
             if(err) return res.json({ success: false });
 
-            res.json({ success: true, userName: data.userName });
+            const user = await Account.findOne({userName: data.userName})
+
+            res.json({ 
+                success: true, 
+                userName: data.userName, 
+                avatar: user.avatar, 
+                fullName: user.fullName 
+            });
 
         });
 

@@ -1,0 +1,77 @@
+.FollowersContainer {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    top: 72px;
+    left: calc(600px + (100% - 1024px) / 2);
+}
+
+.User {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.User img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.UserInformation div:first-child {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 0.9rem;
+}
+
+.UserInformation div:last-child {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 1rem;
+    opacity: 0.6;
+}
+
+.Followers {
+    background-color: #fff;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    padding: 1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.493);
+    position: relative;
+    min-height: 300px;
+    padding-block-end: 0;
+}
+
+.ScrollContainer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+
+.ScrollContainer::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+.Header {
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.NoFollowers {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .FollowersContainer {
+        display: none;
+    }
+}

@@ -3,7 +3,9 @@ import * as actionTypes from '../actions';
 const initialState = {
     authorization: false,
     authorizationLoading: true,
-    userName: null
+    userName: null,
+    avatar: null,
+    fullName: null
 }
 
 const account = (state = initialState, action) => {
@@ -14,11 +16,15 @@ const account = (state = initialState, action) => {
                 authorizationLoading: true
             }
         case actionTypes.AUTHORIZATION_TRUE:
+            const { userName, avatar, fullName } = action.payload; 
+            
             return {
                 ...state,
                 authorization: true,
                 authorizationLoading: false,
-                userName: action.payload.userName
+                userName,
+                avatar,
+                fullName 
             }
         case actionTypes.AUTHORIZATION_FALSE:
             return {

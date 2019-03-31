@@ -2,10 +2,21 @@
     flex-grow: 1;
     flex-basis: 1px;
     overflow-y: scroll;
+    position: relative;
 }
 
 .Comments::-webkit-scrollbar {
     display: none;
+}
+
+.NoComments {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
 }
 
 .ButtonContainer {
@@ -24,4 +35,12 @@
     font-size: 2rem;
     cursor: pointer;
     border-radius: 50%; 
+}
+
+
+@media (max-width: 765px) {
+    .Comments {
+        min-height: 100px;
+        flex-grow: 1; 
+    }
 }

@@ -17,6 +17,8 @@ router.get('/authorization', authorizationControllers.authorization);
 router.get('/search', accountsControllers.searchSimilarAccount);
 // /api/accounts => GET
 router.get('/', accountsControllers.getAccount);
+// /api/accpunts/followers => GET
+router.get('/followers', accountsControllers.getFollowers);
 // /api/accounts/avatar => PUT
 router.put('/avatar', upload.single('avatar'), accountsControllers.changeAvatar);
 // /api/accounts/follow => PUT

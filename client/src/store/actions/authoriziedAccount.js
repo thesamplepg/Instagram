@@ -6,6 +6,13 @@ export const Authorizate = () => async dispatch => {
     const res = await fetch('/api/accounts/authorization');
     const data = await res.json();
 
-    if(data.success) dispatch({ type: actionTypes.AUTHORIZATION_TRUE, payload: {userName: data.userName }});
+    if(data.success) {
+        const { userName, avatar, fullName } = data;
+        
+        dispatch({ 
+            type: actionTypes.AUTHORIZATION_TRUE, 
+            payload: { userName, avatar, fullName }
+        });
+    }
     else dispatch({ type: actionTypes.AUTHORIZATION_FALSE });
 }

@@ -8,7 +8,7 @@
 .BlockLoader svg {
     animation: spin 1s linear infinite;
     font-size: 2rem;
-    color: #e6e6e6;
+    color: #000;
 }
 
 @keyframes spin {

@@ -32,6 +32,7 @@ class Post {
 
         const fetchedPosts = await posts.find(query.filter)
             .skip(query.skip || 0)
+            .sort({date: -1})
             .limit(query.limit || 1000)
             .toArray();
 

@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
-import authorizuedAccountState from './authoriziesAccountReducer';
+import authoriziedAccountReducer from './authoriziedAccountReducer';
 import accounts from './accountsReducer';
 import posts from './postsReducer';
 import publications from './publicationReducer';
 
 export default combineReducers({
-    authoriziedAccount: authorizuedAccountState,
+    authoriziedAccount: authoriziedAccountReducer,
     accounts: accounts,
     posts: posts,
     publications: publications 

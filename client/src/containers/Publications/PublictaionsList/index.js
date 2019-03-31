@@ -3,9 +3,9 @@ import React from 'react';
 import classes from './index.css';
 import Publication from './Publication';
 
-const PubliacationsList = (props) => {
+const PublicationsList = (props) => {
     return (
-        <ul className={classes.PubliacationsList}>
+        <ul className={classes.PublicationsList}>
             {
                 props.publications.map((publication, index) => {
                     const isLiked = publication.likes.indexOf(props.userName) > -1;
@@ -28,4 +28,4 @@ const PubliacationsList = (props) => {
     );
 }
 
-export default PubliacationsList;
+export default PublicationsList;
